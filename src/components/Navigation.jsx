@@ -23,9 +23,7 @@ export default function Navigation() {
 							<a href=''>Careers</a>
 							<a href=''>Community</a>
 						</div>
-						<button>
-							Get Started
-						</button>
+						<button className='getStarted'>Get Started</button>
 					</>
 				)}
 				{!isDesktop && <Hamburger toggled={isOpen} toggle={setOpen} direction='right' distance='sm' />}

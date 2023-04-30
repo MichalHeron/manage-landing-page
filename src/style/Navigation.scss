@@ -1,6 +1,7 @@
 .navBar {
 	display: flex;
 	justify-content: space-between;
+	margin: 2rem 0;
 	.logo {
 		display: flex;
 		align-content: space-around;
@@ -23,8 +24,7 @@
 		}
 	}
 
-	button {
-		font-size: 1rem;
-		height: 3rem;
-	}
+	// button {
+	// 	//
+	// }
 }
