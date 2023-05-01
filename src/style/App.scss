@@ -4,7 +4,6 @@ $BrightRed: hsl(12, 88%, 59%);
 	margin: 0;
 	padding: 0;
 	font-family: 'Be Vietnam Pro', sans-serif;
-	
 }
 
 body {
@@ -23,16 +22,27 @@ body {
 	background-size: cover;
 	background-position: center;
 }
-
-button {
+section {
+	margin-bottom: 6rem;
+}
+button,
+.listPointBox {
 	background-color: $BrightRed;
 	color: white;
-	cursor: pointer;
 	border: none;
-	padding: 1rem;
 	border-radius: 5rem;
 	font-size: 0.9rem;
-	// height: 3rem;
+}
+
+.listPointBox {
+	font-weight: bold;
+	font-size: 1rem;
+	padding: 0.7rem;
+}
+
+button {
+	cursor: pointer;
+	padding: 1rem;
 	box-shadow: 0px 10px 22px -13px $BrightRed;
 	-webkit-box-shadow: 0px 10px 22px -13px $BrightRed;
 	-moz-box-shadow: 0px 10px 22px -13px $BrightRed;

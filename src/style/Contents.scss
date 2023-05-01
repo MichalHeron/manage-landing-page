@@ -1,0 +1,99 @@
+$DarkGrayishBlue: hsl(227, 12%, 61%);
+
+.backgroundElement_1,
+.backgroundElement_2 {
+	position: absolute;
+	z-index: -1;
+}
+.backgroundElement_1 {
+	top: -16rem;
+	right: -13rem;
+}
+.backgroundElement_2 {
+	top: 57rem;
+	right: 67rem;
+}
+
+.boxContainer {
+	display: flex;
+	.description,
+	.descriptionList {
+		p {
+			color: $DarkGrayishBlue;
+			line-height: 1.8rem;
+		}
+	}
+	.description {
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		justify-content: center;
+		h1,
+		p {
+			padding-bottom: 2rem;
+		}
+
+		h1 {
+			font-size: 3rem;
+		}
+
+		h2 {
+			font-size: 2.2rem;
+		}
+		p {
+			padding-right: 19%;
+		}
+	}
+
+	.list {
+		width: 60%;
+		padding-left: 5rem;
+		.descriptionList {
+			display: grid;
+			grid-template-columns: 4.7rem auto;
+			gap: 0.7rem 2rem;
+			padding-bottom: 2rem;
+			h3,
+			p {
+				display: flex;
+				grid-column: 2 / 3;
+			}
+			h3 {
+				grid-row: 1 / 2;
+				justify-content: left;
+				align-items: center;
+			}
+			p {
+				grid-row: 2 / 3;
+				text-align: left;
+			}
+			.listPointBox {
+				grid-column: 1 / 2;
+				grid-row: 1 / 2;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+
+		.introducingImages {
+			width: 60%;
+			margin: auto 0;
+			padding-left: 5rem;
+			img {
+				width: 100%;
+			}
+		}
+	}
+}
+
+
+
+.details {
+	.boxContainer {
+		.description {
+			justify-content: start;
+		}
+	}
+}
