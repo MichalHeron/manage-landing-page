@@ -3,6 +3,7 @@ import './style/App.scss'
 import Navigation from './components/Navigation'
 import IntroducingSection from './components/Introducing'
 import DetailsSection from './components/Details'
+import CommentsSection from './components/Comments'
 
 function App() {
 	return (
@@ -11,6 +12,7 @@ function App() {
 				<Navigation />
 				<IntroducingSection />
 				<DetailsSection />
+				<CommentsSection />
 			</div>
 		</>
 	)

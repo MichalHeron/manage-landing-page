@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import { Sling as Hamburger } from 'hamburger-react'
 
 export default function Navigation() {
-	const isDesktop = useMediaQuery({ query: '(min-width:760px' })
+	const isDesktop = useMediaQuery({ query: '(min-width:900px' })
 	const [isOpen, setOpen] = useState(false)
 
 	return (
@@ -14,7 +14,7 @@ export default function Navigation() {
 				<a href='/' className='logo'>
 					<img src={logo} alt='logo' />
 				</a>
-				{isDesktop && (
+				{(isDesktop && (
 					<>
 						<div className='nav'>
 							<a href=''>Pricing</a>
@@ -25,8 +25,7 @@ export default function Navigation() {
 						</div>
 						<button className='getStarted'>Get Started</button>
 					</>
-				)}
-				{!isDesktop && <Hamburger toggled={isOpen} toggle={setOpen} direction='right' distance='sm' />}
+				)) || <Hamburger toggled={isOpen} toggle={setOpen} direction='right' distance='sm' />}
 			</div>
 		</>
 	)

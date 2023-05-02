@@ -1,5 +1,4 @@
 import React from 'react'
-import introImg from '../../images/illustration-intro.svg'
 import bcgElement from '../../images/bg-tablet-pattern.svg'
 import '../style/Contents.scss'
 
