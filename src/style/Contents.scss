@@ -96,11 +96,49 @@ $fontsizeh2: 2.2rem;
 	}
 }
 
+// ### Primary
+
+// Bright Red: hsl(12, 88%, 59%)
+// Dark Blue: hsl(228, 39%, 23%)
+
+// ### Neutral
+
+// Dark Grayish Blue: hsl(227, 12%, 61%)
+// Very Dark Blue: hsl(233, 12%, 13%)
+// Very Pale Red: hsl(13, 100%, 96%)
+// Vary Light Gray: hsl(0, 0%, 98%)
+
 .comments {
 	h2 {
 		font-size: $fontsizeh2;
 	}
-	.commentsBox{
-		
+	.commentsBox {
+		height: fit-content;
+		.card {
+			position: relative;
+			background-color: hsl(0, 0%, 98%);
+			margin: 2rem;
+			margin-top: 5rem;
+			padding: 2rem;
+			padding-top: 5rem;
+			.name {
+				font-weight: bold;
+				margin-bottom: 1rem;
+			}
+			.comment {
+				color: $DarkGrayishBlue;
+			}
+			.avatar {
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-repeat: no-repeat;
+				background-size: contain;
+				height: 6rem;
+				aspect-ratio: 1/1;
+				// width: 20px;
+			}
+		}
 	}
 }

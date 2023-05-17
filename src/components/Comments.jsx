@@ -16,35 +16,32 @@ export default function CommentsSection() {
 		},
 		{
 			img: '../../images/avatar-ali.png',
-			name: ' Ali Bravo',
+			name: 'Ali Bravo',
 			comment:
 				'We have been able to cancel so many other subscriptions since using Manage. There is no more cross-channel confusion and everyone is much more focused',
 		},
+		{
+			img: '../../images/avatar-richard.png',
+			name: 'Richard Watts',
+			comment:
+				"Manage allows us to provide structure and process. It keeps us organized and focused. I can't stop recommending them to everyone I talk to",
+		},
+		{
+			img: '../../images/avatar-shanai.png',
+			name: 'Shanai Gough',
+			comment:
+				'Their software allows us to track, manage and collaborate on our projects from anywhere. It keeps the whole team in-sync without being intrusive',
+		},
 	]
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			const isLastProfile = currentProfileId === users.length - 1
-			// console.log(isLastProfile)
-			const newProfileId = isLastProfile ? 0 : currentProfileId + 1
-			setCurrentProfileId(newProfileId)
-		}, 1000)
-		return () => clearInterval(interval)
-	}, [currentProfileId])
-
-	// const [seconds, setSeconds] = useState(0)
 
 	// useEffect(() => {
 	// 	const interval = setInterval(() => {
-	// 		setSeconds(seconds => seconds + 1)
-	// 		// console.log(seconds)
-	// 	}, 1000)
+	// 		const isLastProfile = currentProfileId === users.length - 1
+	// 		const newProfileId = isLastProfile ? 0 : currentProfileId + 1
+	// 		setCurrentProfileId(newProfileId)
+	// 	}, 5000)
 	// 	return () => clearInterval(interval)
-	// }, [])
-
-	useEffect(() => {
-		console.log(currentProfileId)
-	}, [currentProfileId])
+	// }, [currentProfileId])
 
 	function Card(props) {
 		return (
@@ -62,33 +59,14 @@ export default function CommentsSection() {
 		)
 	}
 
-	function Carousel_1() {
-		return (
-			<>
-				<div>
-					<Card
-						name={users[currentProfileId].name}
-						avatar={users[currentProfileId].img}
-						comment={users[currentProfileId].comment}
-					/>
-					<p>karuzela 1 {currentProfileId}</p>
-				</div>
-			</>
-		)
-	}
-
-	function Carousel_3() {
-		return (
-			<>
-				<p>karuzela 3</p>
-			</>
-		)
-	}
-
 	return (
 		<section className='comments'>
 			<h2>What they've said</h2>
-			<div className='commentsBox'>{(!isDesktop && <Carousel_1 />) || <Carousel_3 />}</div>
+			<div className={(!isDesktop && 'commentsBox one') || 'commentsBox three'}>
+				{users.map(user => {
+					return <Card name={user.name} avatar={user.img} comment={user.comment} />
+				})}
+			</div>
 			<button className='getStarted'>Get Started</button>
 		</section>
 	)
