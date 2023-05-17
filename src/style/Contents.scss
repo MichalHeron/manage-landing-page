@@ -112,9 +112,26 @@ $fontsizeh2: 2.2rem;
 	h2 {
 		font-size: $fontsizeh2;
 	}
+
 	.commentsBox {
-		height: fit-content;
+		// height: 20rem;
+		display: grid;
+		overflow: hidden;
+		position: relative;
+		// width: calc(400%);
+		transform: translateX(0vw);
+		
+		.card:nth-child(1){
+			grid-column: 1/2;
+		}
+		.card:nth-child(2){
+			grid-column: 2/3;
+		}
+
 		.card {
+			display: inline-block;
+			box-sizing: border-box;
+			width: 100%;
 			position: relative;
 			background-color: hsl(0, 0%, 98%);
 			margin: 2rem;
@@ -137,8 +154,12 @@ $fontsizeh2: 2.2rem;
 				background-size: contain;
 				height: 6rem;
 				aspect-ratio: 1/1;
-				// width: 20px;
 			}
 		}
 	}
+	// .one {
+	// 	.card {
+	// 		width: 100%;
+	// 	}
+	// }
 }
