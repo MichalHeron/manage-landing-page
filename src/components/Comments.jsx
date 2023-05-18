@@ -43,14 +43,17 @@ export default function CommentsSection() {
 	// 		const isLastProfile = currentProfileId === users.length - 1
 	// 		const newProfileId = isLastProfile ? 0 : currentProfileId + 1
 	// 		setCurrentProfileId(newProfileId)
-	// 	}, 5000)
+	// 	}, 2000)
 	// 	return () => clearInterval(interval)
 	// }, [currentProfileId])
 
+	//https://reactcommunity.org/react-transition-group/
+
 	function Card(props) {
+		let cardClass = `card level${props.level}`
 		return (
 			<>
-				<div className='card'>
+				<div className={cardClass}>
 					<div className='name'>{props.name}</div>
 					<p className='comment'>"{props.comment}"</p>
 					<div
@@ -63,14 +66,41 @@ export default function CommentsSection() {
 		)
 	}
 
+	function GenerateItem() {
+		let items = []
+		let level = currentProfileId
+		for (let i = currentProfileId - 1; i < currentProfileId + 2; i++) {
+			let index = i
+			if (i < 0) {
+				index = users.length + i
+			} else if (i >= users.length) {
+				index = i % users.length
+			}
+			level = currentProfileId - i
+			items.push(
+				<Card
+					name={users[index].name}
+					avatar={users[index].img}
+					comment={users[index].comment}
+					key={users[index].key}
+					level={level}
+				/>
+			)
+		}
+		return items
+	}
+
 	return (
 		<section className='comments'>
 			<h2>What they've said</h2>
 			<div className={(!isDesktop && 'commentsBox one') || 'commentsBox three'}>
-				{users.map(user => {
-					console.log(user)
+				<GenerateItem />
+				{/* 
+				<Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} />
+				<Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} /> */}
+				{/* {users.map(user => {
 					return <Card name={user.name} avatar={user.img} comment={user.comment} key={user.key} />
-				})}
+				})} */}
 			</div>
 			<button className='getStarted'>Get Started</button>
 		</section>
