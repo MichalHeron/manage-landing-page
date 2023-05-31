@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../style/Contents.scss'
 import { useMediaQuery } from 'react-responsive'
+import { AnimatePresence, motion, wrap } from 'framer-motion'
 
 export default function CommentsSection() {
 	const isDesktop = useMediaQuery({ query: '(min-width:900px' })
@@ -38,66 +39,102 @@ export default function CommentsSection() {
 		},
 	]
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		const isLastProfile = currentProfileId === users.length - 1
-	// 		const newProfileId = isLastProfile ? 0 : currentProfileId + 1
-	// 		setCurrentProfileId(newProfileId)
-	// 	}, 2000)
-	// 	return () => clearInterval(interval)
-	// }, [currentProfileId])
+	const imageIndex = wrap(0, users.length, currentProfileId)
 
-	//https://reactcommunity.org/react-transition-group/
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentProfileId(currentProfileId + 1)
+		}, 4000)
+		return () => clearInterval(interval)
+	}, [currentProfileId])
 
 	function Card(props) {
-		let cardClass = `card level${props.level}`
 		return (
 			<>
-				<div className={cardClass}>
-					<div className='name'>{props.name}</div>
-					<p className='comment'>"{props.comment}"</p>
-					<div
-						className='avatar'
-						style={{
-							backgroundImage: `url(${props.avatar})`,
-						}}></div>
-				</div>
+				<div className='name'>{props.name}</div>
+				<p className='comment'>"{props.comment}"</p>
+				<div
+					className='avatar'
+					style={{
+						backgroundImage: `url(${props.avatar})`,
+					}}></div>
 			</>
 		)
 	}
 
-	function GenerateItem() {
-		let items = []
-		let level = currentProfileId
-		for (let i = currentProfileId - 1; i < currentProfileId + 2; i++) {
-			let index = i
-			if (i < 0) {
-				index = users.length + i
-			} else if (i >= users.length) {
-				index = i % users.length
-			}
-			level = currentProfileId - i
-			items.push(
-				<Card
-					name={users[index].name}
-					avatar={users[index].img}
-					comment={users[index].comment}
-					key={users[index].key}
-					level={level}
-				/>
-			)
-		}
-		return items
+	// function GenerateItem() {
+	// 	let items = []
+	// 	let level = currentProfileId
+	// 	for (let i = currentProfileId - 1; i < currentProfileId + 2; i++) {
+	// 		let index = i
+	// 		if (i < 0) {
+	// 			index = users.length + i
+	// 		} else if (i >= users.length) {
+	// 			index = i % users.length
+	// 		}
+	// 		level = currentProfileId - i
+	// 		items.push(
+	// 			<Card
+	// 				name={users[index].name}
+	// 				avatar={users[index].img}
+	// 				comment={users[index].comment}
+	// 				key={users[index].key}
+	// 				level={level}
+	// 			/>
+	// 		)
+	// 	}
+	// 	return items
+	// }
+
+	const variants = {
+		enter: {
+			x: 1000,
+			opacity: 0,
+		},
+
+		center: {
+			zIndex: 1,
+			x: 0,
+			opacity: 1,
+		},
+		exit: {
+			zIndex: 0,
+			x: -1000,
+			opacity: 0,
+		},
 	}
+
+	//   const userIndex = wrap(0, users.length, page)
 
 	return (
 		<section className='comments'>
 			<h2>What they've said</h2>
 			<div className={(!isDesktop && 'commentsBox one') || 'commentsBox three'}>
-				<GenerateItem />
+				<AnimatePresence initial={false}>
+					<motion.div
+						className='card'
+						key={users[imageIndex].img}
+						variants={variants}
+						initial='enter'
+						animate='center'
+						exit='exit'
+						transition={{
+							x: { type: 'spring', stiffness: 300, damping: 90 },
+							opacity: { duration: 0.2 },
+						}}>
+						<Card
+							name={users[imageIndex].name}
+							avatar={users[imageIndex].img}
+							comment={users[imageIndex].comment}
+							key={users[imageIndex].key}
+						/>
+					</motion.div>
+				</AnimatePresence>
+
+				{/* <GenerateItem /> */}
+
 				{/* 
-				<Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} />
-				<Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} /> */}
+				<Card name={users[1].name} avatar={users[1].img} comment={users[1].comment} key={users[1].key} /> */}
 				{/* {users.map(user => {
 					return <Card name={user.name} avatar={user.img} comment={user.comment} key={user.key} />
 				})} */}
