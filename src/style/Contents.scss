@@ -109,15 +109,16 @@ $fontsizeh2: 2.2rem;
 // Vary Light Gray: hsl(0, 0%, 98%)
 
 .comments {
+	position: relative;
 	h2 {
 		font-size: $fontsizeh2;
 	}
 
 	.commentsBox {
 		height: 20rem;
-		display: flex;
+		//display: flex;
 		// overflow: hidden;
-		position: relative;
+		position: absolute;
 		width: 100%;
 		margin: 0 auto;
 		// .card:nth-child(1) {
@@ -188,4 +189,9 @@ $fontsizeh2: 2.2rem;
 	// 		width: 100%;
 	// 	}
 	// }
+
+	.getStarted {
+		position: absolute;
+		bottom: 0px;
+	}
 }
