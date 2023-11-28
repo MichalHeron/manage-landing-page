@@ -113,6 +113,60 @@ $fontsizeh2: 2.2rem;
 	h2 {
 		font-size: $fontsizeh2;
 	}
+	background-color: aqua;
+
+	.commentsBox {
+		height: 20rem;
+		position: relative;
+		width: 100%;
+		margin: 0 auto;
+		// overflow: hidden;
+		.card {
+			transition: transform 1s;
+			box-sizing: border-box;
+			// width: 45rem;
+			height: 200px;
+			position: absolute;
+			background-color: hsl(0, 0%, 98%);
+			margin: 2rem;
+			margin-top: 5rem;
+			padding: 2rem;
+			padding-top: 5rem;
+			.name {
+				font-weight: bold;
+				margin-bottom: 1rem;
+			}
+			.comment {
+				color: $DarkGrayishBlue;
+			}
+			.avatar {
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-repeat: no-repeat;
+				background-size: contain;
+				height: 6rem;
+				aspect-ratio: 1/1;
+			}
+		}
+
+	}
+
+	.getStarted {
+		position: relative;
+		// bottom: 0px;
+	}
+}
+
+
+/* backup
+
+.comments {
+	position: relative;
+	h2 {
+		font-size: $fontsizeh2;
+	}
 
 	.commentsBox {
 		height: 20rem;
@@ -195,3 +249,5 @@ $fontsizeh2: 2.2rem;
 		bottom: 0px;
 	}
 }
+
+*/

@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 export default function CommentsSection() {
 	const isDesktop = useMediaQuery({ query: '(min-width:900px' })
 
-	const [currentProfileId, setCurrentProfileId] = useState(0)
+	const [currentProfileId, setCurrentProfileId] = useState(1)
 
 	const users = [
 		{
@@ -38,22 +38,21 @@ export default function CommentsSection() {
 		},
 	]
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		const isLastProfile = currentProfileId === users.length - 1
-	// 		const newProfileId = isLastProfile ? 0 : currentProfileId + 1
-	// 		setCurrentProfileId(newProfileId)
-	// 	}, 2000)
-	// 	return () => clearInterval(interval)
-	// }, [currentProfileId])
+	useEffect(() => {
+		const interval = setInterval(() => {
+			const newProfileId = (currentProfileId === users.length) ? 1 : currentProfileId + 1
+			setCurrentProfileId(newProfileId)
+		}, 2000)
+		return () => clearInterval(interval)
+	}, [currentProfileId])
 
 	//https://reactcommunity.org/react-transition-group/
 
 	function Card(props) {
-		let cardClass = `card level${props.level}`
+		let translatexValue = ((props.level - currentProfileId) * 110)
 		return (
 			<>
-				<div className={cardClass}>
+				<div className='card' style={{ transform: `translateX(${translatexValue}%)`}}>
 					<div className='name'>{props.name}</div>
 					<p className='comment'>"{props.comment}"</p>
 					<div
@@ -68,25 +67,9 @@ export default function CommentsSection() {
 
 	function GenerateItem() {
 		let items = []
-		let level = currentProfileId
-		for (let i = currentProfileId - 1; i < currentProfileId + 2; i++) {
-			let index = i
-			if (i < 0) {
-				index = users.length + i
-			} else if (i >= users.length) {
-				index = i % users.length
-			}
-			level = currentProfileId - i
-			items.push(
-				<Card
-					name={users[index].name}
-					avatar={users[index].img}
-					comment={users[index].comment}
-					key={users[index].key}
-					level={level}
-				/>
-			)
-		}
+		users.forEach(e => {
+			items.push(<Card name={e.name} avatar={e.img} comment={e.comment} key={e.key} level={e.key} />)
+		})
 		return items
 	}
 
