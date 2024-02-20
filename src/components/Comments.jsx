@@ -1,12 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../style/Contents.scss'
 import { useMediaQuery } from 'react-responsive'
+import { TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
+
+import Flickity from 'react-flickity-component'
 
 export default function CommentsSection() {
 	const isDesktop = useMediaQuery({ query: '(min-width:900px' })
 
 	const [currentProfileId, setCurrentProfileId] = useState(1)
 
+	const flickityOptions = {
+		pageDots: false,
+		prevNextButtons: false,
+		wrapAround: true,
+		autoPlay: 3000,
+		pauseAutoPlayOnHover: false,
+		// groupCells: 2,
+	}
 	const users = [
 		{
 			img: '../../images/avatar-anisha.png',
@@ -38,21 +50,22 @@ export default function CommentsSection() {
 		},
 	]
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			const newProfileId = (currentProfileId === users.length) ? 1 : currentProfileId + 1
-			setCurrentProfileId(newProfileId)
-		}, 2000)
-		return () => clearInterval(interval)
-	}, [currentProfileId])
+	// useEffect(() => {
+	// 	const interval = setInterval(() => {
+	// 		const newProfileId = currentProfileId === users.length ? 1 : currentProfileId + 1
+	// 		setCurrentProfileId(newProfileId)
+	// 	}, 5000)
+	// 	return () => clearInterval(interval)
+	// }, [currentProfileId])
 
 	//https://reactcommunity.org/react-transition-group/
 
 	function Card(props) {
-		let translatexValue = ((props.level - currentProfileId) * 110)
+		let translatexValue = (props.level - currentProfileId) * 110
 		return (
 			<>
-				<div className='card' style={{ transform: `translateX(${translatexValue}%)`}}>
+				{/* <div className='card' style={{ transform: `translateX(${translatexValue}%)` }}> */}
+				<div className='card'>
 					<div className='name'>{props.name}</div>
 					<p className='comment'>"{props.comment}"</p>
 					<div
@@ -77,13 +90,14 @@ export default function CommentsSection() {
 		<section className='comments'>
 			<h2>What they've said</h2>
 			<div className={(!isDesktop && 'commentsBox one') || 'commentsBox three'}>
-				<GenerateItem />
-				{/* 
-				<Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} />
-				<Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} /> */}
+				<Flickity options={flickityOptions}>
+					<GenerateItem />
+				</Flickity>
+
+				{/* <Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} /> */}
 				{/* {users.map(user => {
 					return <Card name={user.name} avatar={user.img} comment={user.comment} key={user.key} />
-				})} */}
+				})}				 */}
 			</div>
 			<button className='getStarted'>Get Started</button>
 		</section>
