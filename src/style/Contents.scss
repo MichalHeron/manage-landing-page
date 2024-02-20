@@ -113,26 +113,15 @@ $fontsizeh2: 2.2rem;
 	h2 {
 		font-size: $fontsizeh2;
 	}
-	background-color: aqua;
+	// background-color: aqua;
 
 	.commentsBox {
-		// position: relative;
-		// width: fit-content;
-		// margin: 0 auto;
-		overflow: hidden;
-		// display: flex;
-		// height: 20rem;
 		.flickity-viewport {
 			.flickity-slider {
 				.card {
-					// transition: all 1s;
-					// box-sizing: border-box;
-					// width: 100%;
-					// height: 200px;
-					// position: relative;
+					width: 60%;
 					background-color: hsl(0, 0%, 98%);
 					margin: 5rem 2rem 3rem;
-					// margin-top: 5rem;
 					padding: 2rem;
 					padding-top: 5rem;
 					.name {

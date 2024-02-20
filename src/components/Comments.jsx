@@ -17,7 +17,12 @@ export default function CommentsSection() {
 		wrapAround: true,
 		autoPlay: 3000,
 		pauseAutoPlayOnHover: false,
-		// groupCells: 2,
+		draggable: '>1',
+		freeScroll: true,
+		groupCells: 1,
+		imagesLoaded: true,
+		selectedAttraction: 0.007,
+		// friction: 0.7,
 	}
 	const users = [
 		{
@@ -90,14 +95,9 @@ export default function CommentsSection() {
 		<section className='comments'>
 			<h2>What they've said</h2>
 			<div className={(!isDesktop && 'commentsBox one') || 'commentsBox three'}>
-				<Flickity options={flickityOptions}>
+				<Flickity options={flickityOptions} disableImagesLoaded={true}>
 					<GenerateItem />
 				</Flickity>
-
-				{/* <Card name={users[0].name} avatar={users[0].img} comment={users[0].comment} key={users[0].key} /> */}
-				{/* {users.map(user => {
-					return <Card name={user.name} avatar={user.img} comment={user.comment} key={user.key} />
-				})}				 */}
 			</div>
 			<button className='getStarted'>Get Started</button>
 		</section>

@@ -15,7 +15,6 @@ function App() {
 				<IntroducingSection />
 				<DetailsSection />
 				<CommentsSection />
-
 			</div>
 		</>
 	)
